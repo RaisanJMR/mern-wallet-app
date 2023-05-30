@@ -1,0 +1,85 @@
+$redColor: red;
+$border: 1px solid $redColor;
+.sendmodal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .sendModalContainer {
+    background-color: #fff;
+    width: 600px;
+    padding: 1.818rem;
+    border-radius: 0.625rem;
+    .sendModalContent {
+      margin: 4rem 0 4rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      .btn {
+        padding: 0.613rem 0.113rem;
+        width: 30%;
+        font-weight: 500;
+        align-self: end;
+        cursor: pointer;
+        border-radius: 0.313rem;
+        border: none;
+        outline: none;
+        background-color: #7451f8;
+        color: #ffffff;
+        &:hover {
+          background-color: rgba(116, 81, 248, 0.8);
+        }
+      }
+    }
+    .formControl {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      label {
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #696c74;
+      }
+      input,
+      select,
+      textarea {
+        padding: 0.625rem;
+        border-radius: 0.313rem;
+        width: 70%;
+        border: 1px solid #e5e5e5;
+        outline: none;
+        font-weight: 600;
+        &::placeholder {
+          color: #e5e5e5;
+          font-weight: 400;
+        }
+      }
+    }
+    .sendModalHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .closeIconContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        background-color: #f6f6f6;
+        border-radius: 0.313rem;
+        .closeIcon {
+          color: #222222;
+          // color: #7451f8;
+        }
+      }
+    }
+  }
+}

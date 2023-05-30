@@ -1,0 +1,19 @@
+{
+  "name": "wallet-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon wallet-app-backend/index.js",
+    "client": "npm run dev --prefix wallet-client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
+  }
+}

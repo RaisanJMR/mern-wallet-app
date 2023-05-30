@@ -1,0 +1,51 @@
+.widget {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0.625rem;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+  height: 8.25rem;
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: rgb(160, 160, 160);
+    }
+    .counter {
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+    .link {
+      font-size: 0.8rem;
+      color: #7551f8b0;
+      font-weight: 500;
+      text-decoration: none;
+      width: fit-content;
+      &.link:hover {
+        text-decoration: underline;
+      }
+    }
+    .percentage {
+      display: flex;
+      align-items: center;
+      font-size: 0.875rem;
+      &.positive {
+        color: green;
+      }
+      &.negative {
+        color: red;
+      }
+    }
+    .icon {
+        font-size: 1.7rem;
+        align-self: flex-end;
+        padding: 0.313rem;
+        border-radius: 0.313rem;
+    }
+  }
+}

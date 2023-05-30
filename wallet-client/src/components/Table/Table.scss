@@ -1,0 +1,47 @@
+.table {
+  .tableCell {
+    font-family: inherit;
+    font-weight: 500;
+  }
+  .cellWrapper {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  .image {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 0.625rem;
+    object-fit: cover;
+  }
+  .status {
+    padding: 0.313rem;
+    border-radius: 0.313rem;
+    font-weight: 500;
+    &.Approved {
+      color: green;
+      background-color: rgba(0, 128, 0, 0.151);
+    }
+    &.Pending {
+      color: goldenrod;
+      background-color: rgba(189, 189, 3, 0.103);
+    }
+  }
+  .send,
+  .req {
+    padding: 0.313rem;
+    border-radius: 0.313rem;
+    margin-left: 0.313rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .send {
+    color: rgb(218, 165, 32);
+    background-color: rgba(189, 189, 3, 0.096);
+  }
+  .req {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.151);
+  }
+}

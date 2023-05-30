@@ -1,0 +1,85 @@
+.profile {
+  display: flex;
+  width: 100%;
+  .profileContainer {
+    flex: 6;
+    .userProfile {
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      .profilePhoto {
+        padding: 0.625rem;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        h1 {
+          margin-bottom: 1rem;
+          text-align: center;
+          font-size: 1.3rem;
+          color: gray;
+        }
+        .profileImage {
+          width: 12.5rem;
+          height: 12.5rem;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .uploadBtn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          button {
+            border: 0;
+            outline: none;
+            padding: 0.613rem 0.413rem;
+            color: #fff;
+            background-color: #7451f8;
+            cursor: pointer;
+          }
+        }
+      }
+      .profileDetails {
+        flex: 6;
+        padding: 0.625rem;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        form {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 2rem 0.2rem;
+          row-gap: 1rem;
+          .form__control {
+            padding: 0.5rem 0.5rem;
+            // border: 1px solid red;
+            input {
+              width: 100%;
+              padding: 0.625rem;
+              border: 1px solid #e5e5e5;
+              outline: none;
+              font-weight: 600;
+            }
+          }
+          .form__control:last-child {
+            grid-column: 1 / -1;
+            .btn {
+              width: 15%;
+              border: 0;
+              outline: none;
+              padding: 0.613rem 0.413rem;
+              color: #fff;
+              background-color: #7451f8;
+              cursor: pointer;
+            }
+           
+          }
+        }
+      }
+    }
+  }
+}

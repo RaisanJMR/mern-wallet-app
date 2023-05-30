@@ -1,0 +1,77 @@
+.sidebar {
+  flex: 1;
+  border-right: 0.4px solid rgb(230, 227, 227);
+  min-height: 100vh;
+  background-color: #ffffff;
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+    }
+  }
+
+  hr {
+    height: 0;
+    border: 0.4px solid rgb(230, 227, 227);
+  }
+
+  .center {
+    padding: 0 0.6rem 0;
+    ul {
+      list-style-type: none;
+      .title {
+        font-size: 0.625rem;
+        font-weight: 700;
+        color: #999999;
+        margin: 1rem 0 1rem 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        padding: 0.3rem;
+        cursor: pointer;
+        &:hover {
+          background-color: #ece8ff;
+        }
+        .icon {
+          font-size: 1.1rem;
+          color: #7451f8;
+        }
+
+        span {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #888888;
+          margin: 0 0 0 0.625rem;
+        }
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    align-items: center;
+    margin: 0.625rem;
+  }
+  .colorOption {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.313rem;
+    border: 0.16rem solid #7451f8;
+    cursor: pointer;
+    margin: 0.313rem;
+
+    &:nth-child(1) {
+      background-color: whitesmoke;
+    }
+    &:nth-child(2) {
+      background-color: #333333;
+    }
+    &:nth-child(3) {
+      background-color: darkblue;
+    }
+  }
+}

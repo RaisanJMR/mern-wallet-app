@@ -1,0 +1,110 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "phone": "+1 555-555-5555",
+    "password": "p@ssword123",
+    "identificationType": "passport",
+    "identificationNumber": "A1234567",
+    "balance": 5000,
+    "address": "123 Main St, Anytown USA",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "Jane Smith",
+    "email": "janesmith@example.com",
+    "phone": "+44 20 1234 5678",
+    "password": "qwertyuiop",
+    "identificationType": "driver license",
+    "identificationNumber": "B9876543",
+    "balance": 2000,
+    "address": "456 Park Ave, London, UK",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "David Lee",
+    "email": "davidlee@example.com",
+    "phone": "+82 2-1234-5678",
+    "password": "mypassword",
+    "identificationType": "national ID",
+    "identificationNumber": "C2468135",
+    "balance": 10000,
+    "address": "789 Seoul St, Seoul, South Korea",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "Sarah Johnson",
+    "email": "sarahjohnson@example.com",
+    "phone": "+1 555-555-5555",
+    "password": "password123",
+    "identificationType": "passport",
+    "identificationNumber": "D1234567",
+    "balance": 7500,
+    "address": "321 Elm St, Anytown USA",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "Michael Chen",
+    "email": "michaelchen@example.com",
+    "phone": "+86 10 1234 5678",
+    "password": "mysecretpas10sword",
+    "identificationType": "national ID",
+    "identificationNumber": "E1357924",
+    "balance": 3000,
+    "address": "888 Beijing St, Beijing, China",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "Emily Davis",
+    "email": "emilydavis@example.com",
+    "phone": "+1 555-555-5555",
+    "password": "password456",
+    "identificationType": "driver license",
+    "identificationNumber": "F2468135",
+    "balance": 9000,
+    "address": "456 Oak St, Anytown USA",
+    "isVerified": true,
+    "isAdmin": true
+  },
+  {
+    "name": "Liam Wilson",
+    "email": "liamwilson@example.com",
+    "phone": "+44 20 1234 5678",
+    "password": "password789",
+    "identificationType": "passport",
+    "identificationNumber": "G9876543",
+    "balance": 6000,
+    "address": "123 King St, London, UK",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "Ava Garcia",
+    "email": "avagarcia@example.com",
+    "phone": "+1 555-555-5555",
+    "password": "mysecretpassword123",
+    "identificationType": "national ID",
+    "identificationNumber": "H2468135",
+    "balance": 15000,
+    "address": "789 Maple St, Anytown USA",
+    "isVerified": true,
+    "isAdmin": false
+  },
+  {
+    "name": "David Fuller",
+    "email": "davidfuller@example.com",
+    "phone": "+1 211-999-6125",
+    "password": "1234567",
+    "identificationType": "national ID",
+    "identificationNumber": "123456789",
+    "balance": 500.0,
+    "address": "456 Elm Street, City, State, ZIP",
+    "isVerified": true,
+    "isAdmin": false
+  }
+]

@@ -1,0 +1,81 @@
+.request {
+  display: flex;
+  width: 100%;
+  .requestContainer {
+    flex: 6;
+    .requests {
+      padding: 1.25rem;
+      h1 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .requestsList {
+        padding: 0.625rem;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        .tableHead {
+          font-weight: 600;
+          color: #aab0b7;
+        }
+        .date {
+          font-weight: 600;
+        }
+        .time {
+          color: #aab0b7;
+          padding-top: 0.313rem;
+        }
+        .cellWrapper {
+          font-weight: 600;
+        }
+        .accept {
+          padding: 0.313rem;
+          background-color: #7451f8;
+          border-radius: 0.113rem;
+          color: #ffffff;
+          cursor: pointer;
+          border: 0;
+          outline: none;
+        }
+        .pending {
+          padding: 0.313rem;
+          background-color: rgb(230, 57, 70, 0.2);
+          border-radius: 0.313rem;
+          color: rgb(230, 57, 70);
+          font-weight: 600;
+          margin-left: 0;
+        }
+        .paid {
+          padding: 0.313rem;
+          background-color: rgba(127, 17, 224, 0.6);
+          border-radius: 0.113rem;
+          font-weight: 600;
+          color: #ffffff;
+          cursor: pointer;
+          border: 0;
+          outline: none;
+        }
+        .accepted {
+          padding: 0.313rem;
+          background-color: rgb(217, 255, 231);
+          border-radius: 0.313rem;
+          font-weight: 600;
+          margin-left: 0;
+          color: rgb(82, 178, 123);
+          background-color: rgb(217, 255, 231);
+        }
+      }
+    }
+  }
+  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: #7451f8;
+  }
+  .css-1aquho2-MuiTabs-indicator {
+    background-color: #7451f8;
+  }
+  .css-18lrjg1-MuiCircularProgress-root {
+    color: #7451f8;
+    &.req {
+      color: red;
+    }
+  }
+}

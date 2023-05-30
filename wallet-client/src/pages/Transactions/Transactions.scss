@@ -1,0 +1,79 @@
+.transaction {
+  display: flex;
+  width: 100%;
+  .transactionContainer {
+    flex: 6;
+    .transactions {
+      padding: 1.25rem;
+      h1 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .transactionsList {
+        padding: 0.625rem;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        .table {
+          .tableCell {
+            .deposit {
+              color: #f15bb5;
+              font-weight: 600;
+              background-color: rgb(241 91 181 / 10%);
+              padding: 0.313rem;
+              border-radius: 0.313rem;
+            }
+            .transfer {
+              color: #e63946;
+              font-weight: 600;
+              background-color: rgba(230, 57, 70, 0.1);
+              padding: 0.313rem;
+              border-radius: 0.313rem;
+            }
+            .payment {
+              color: #0077b6;
+              font-weight: 600;
+              background-color: rgb(0, 119, 182, 0.1);
+              padding: 0.313rem;
+              border-radius: 0.313rem;
+            }
+            .refund {
+              color: rgb(3, 4, 94);
+              font-weight: 600;
+              background-color: rgb(3, 4, 94, 0.1);
+              padding: 0.313rem;
+              border-radius: 0.313rem;
+            }
+          }
+          .tableHead {
+            font-weight: 600;
+            color: #aab0b7;
+          }
+          .date {
+            font-weight: 600;
+          }
+          .time {
+            color: #aab0b7;
+            padding-top: 0.313rem;
+          }
+          .cellWrapper {
+            font-weight: 600;
+          }
+        }
+        .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+          color: #7451f8;
+        }
+        .css-1aquho2-MuiTabs-indicator {
+          background-color: #7451f8;
+        }
+        .css-18lrjg1-MuiCircularProgress-root {
+          color: #7451f8;
+        }
+      }
+    }
+  }
+}
+.circularProgressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
