@@ -1,33 +1,30 @@
 const asyncHandler = require('express-async-handler')
-const { cloudinary } = require('../utils/cloudinary')
+const cloudinary = require('../utils/cloudinary')
 const User = require('../models/userModal')
 
-
 const uploadImage = asyncHandler(async (req, res) => {
-  const file = req.files.photo
-  if (
-    file.mimetype == 'image/jpeg' ||
-    file.mimetype == 'image/jpg' ||
-    file.mimetype == 'image/png'
-  ) {
-    try {
-      const uploadResponse = await cloudinary.uploader.upload(
-        file.tempFilePath,
-        {
-          folder: 'profile',
-          upload_preset: 'my_media',
-          use_filename: true,
+  const { photo } = req.body
+ 
+  try {
+    const uploadedImage = await cloudinary.uploader.upload(
+      photo,
+      { folder: 'profile', upload_preset: 'my_media', use_filename: true },
+      function (error, result) {
+        if (error) {
+          console.log(error)
         }
-      )
-      res.json({ data: uploadResponse })
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({ err: error })
-    }
-  } else {
-    return res.status(400).json({
-      msg: 'only supports .jpg/.jpeg and .png',
+        console.log(result)
+      }
+    )
+    const { secure_url } = uploadedImage
+    const newUser = await User.findByIdAndUpdate(req.params.id, {
+      image: secure_url,
     })
+    newUser.image = secure_url
+    res.status(201).json(newUser)
+  } catch (error) {
+    res.status(500)
+    throw new Error(error)
   }
 })
 
