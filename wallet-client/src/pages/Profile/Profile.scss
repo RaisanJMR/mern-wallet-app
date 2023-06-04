@@ -15,7 +15,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-evenly;
         h1 {
           margin-bottom: 1rem;
           text-align: center;
@@ -27,6 +27,11 @@
           height: 12.5rem;
           object-fit: cover;
           border-radius: 50%;
+        }
+        .profileIcon {
+          width: 12.5rem;
+          height: 12.5rem;
+          color: rgba(116, 81, 248,0.5);
         }
         .uploadBtn {
           display: flex;

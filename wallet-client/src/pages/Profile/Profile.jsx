@@ -4,53 +4,56 @@ import Navbar from '../../components/Navbar/Navbar'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './Profile.scss'
-// import { uploadProfileImage } from '../../features/upload/uploadSlice'
-// import axios from 'axios'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { toast } from 'react-toastify'
+import { uploadProfileImage } from '../../features/upload/uploadSlice'
+import axios from 'axios'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Profile = () => {
   const dispatch = useDispatch()
 
-  const { name, _id, token } = useSelector((state) => state.auth.user)
-  const [fileInputState, setFileInputState] = useState('')
-  const [previewSource, setPreviewSource] = useState('')
+  const { name, _id, token, image } = useSelector((state) => state.auth.user)
+  const [file, setFile] = useState('')
+  const [photo, setPhoto] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0]
-    console.log(file)
-    PreviewFile(file)
-    setFileInputState(e.target.value)
-  }
-
-  const PreviewFile = (file) => {
+  const previewFiles = (file) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
+
     reader.onloadend = () => {
-      setPreviewSource(reader.result)
+      setPhoto(reader.result)
     }
   }
+  // console.log(photo)
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const file = e.target.files[0]
+    setFile(file)
+    previewFiles(file)
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!previewSource) return
-    uploadImage(previewSource)
-  }
-
-  const uploadImage = async (previewSource) => {
+    setLoading(true)
+    const result = await axios.post(`http://localhost:8080/api/upload/${_id}`, {
+      photo: photo,
+    })
     try {
-      await fetch(`http://localhost:8080/api/upload/${_id}`, {
-        method: 'POST',
-        body: JSON.stringify({ data: previewSource }),
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setFileInputState('')
-      setPreviewSource('')
-      console.log('somenthing went wrong')
-    } catch (err) {
-      console.error(err)
+      if (result.data) {
+        setLoading(false)
+        toast.success('image updated!!')
+        // image=result.data.secure_url
+      }
+    } catch (error) {
+      console.log(error)
     }
+    // const data = {
+    //   id:_id,
+    //   photo
+    // }
+    // dispatch(uploadProfileImage(data))
   }
 
   return (
@@ -60,28 +63,28 @@ const Profile = () => {
         <Navbar />
         <div className='userProfile'>
           <div className='profilePhoto'>
+            {loading && <CircularProgress />}
             <h1>{name}</h1>
-            {previewSource ? (
-              <img src={previewSource} alt='image' className='profileImage' />
+            {photo ? (
+              <img src={photo} alt='photo' className='profileImage' />
+            ) : image ? (
+              <img src={image} alt='photo' className='profileImage' />
             ) : (
-              <img
-                src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='image'
-                className='profileImage'
-              />
+              <AccountCircleIcon className='profileIcon' />
             )}
-            <form onSubmit={handleSubmit} encType='multipart/form-data'>
-              <input
-                type='file'
-                name='image'
-                id='image'
-                onChange={handleFileInputChange}
-                value={fileInputState}
-              />
-              <div className='uploadBtn'>
-                <button type='submit'>upload new photo</button>
-              </div>
-            </form>
+            {!image && (
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <input
+                  type='file'
+                  name='photo'
+                  id='photo'
+                  onChange={(e) => handleChange(e)}
+                />
+                <div className='uploadBtn'>
+                  <button type='submit'>upload new photo</button>
+                </div>
+              </form>
+            )}
           </div>
           <div className='profileDetails'>
             <h1>details</h1>

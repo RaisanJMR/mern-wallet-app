@@ -10,12 +10,11 @@ const initialState = {
 }
 
 export const uploadProfileImage = createAsyncThunk(
-  'upload/profileImg',
-  async ({ userId, file }, thunkAPI) => {
-    console.log('INSIDE SLICE' + userId, file)
+  'upload/profileUpdate',
+  async (data, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await uploadService.uploadImage(userId, file, token)
+      return await uploadService.uploadImage(data, token)
     } catch (error) {
       const message =
         (error.response &&
