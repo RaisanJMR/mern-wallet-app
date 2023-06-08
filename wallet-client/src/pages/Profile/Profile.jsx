@@ -1,22 +1,25 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './Profile.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { getusers, reset } from '../../features/auth/authSlice'
 import { toast } from 'react-toastify'
 import { uploadProfileImage } from '../../features/upload/uploadSlice'
-import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Profile = () => {
   const dispatch = useDispatch()
 
-  const { name, _id, token, image } = useSelector((state) => state.auth.user)
+  const { name, _id, image } = useSelector((state) => state.auth.user)
+  const { userImg, uploadLoading, uploadSuccess } = useSelector(
+    (state) => state.upload
+  )
   const [file, setFile] = useState('')
   const [photo, setPhoto] = useState('')
-  const [loading, setLoading] = useState(false)
+
 
   const previewFiles = (file) => {
     const reader = new FileReader()
@@ -26,7 +29,7 @@ const Profile = () => {
       setPhoto(reader.result)
     }
   }
-  // console.log(photo)
+
 
   const handleChange = (e) => {
     const file = e.target.files[0]
@@ -36,24 +39,11 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    const result = await axios.post(`http://localhost:8080/api/upload/${_id}`, {
+    const data = {
+      id: _id,
       photo: photo,
-    })
-    try {
-      if (result.data) {
-        setLoading(false)
-        toast.success('image updated!!')
-        // image=result.data.secure_url
-      }
-    } catch (error) {
-      console.log(error)
     }
-    // const data = {
-    //   id:_id,
-    //   photo
-    // }
-    // dispatch(uploadProfileImage(data))
+    dispatch(uploadProfileImage(data))
   }
 
   return (
@@ -63,16 +53,16 @@ const Profile = () => {
         <Navbar />
         <div className='userProfile'>
           <div className='profilePhoto'>
-            {loading && <CircularProgress />}
+            {uploadLoading && <CircularProgress />}
             <h1>{name}</h1>
             {photo ? (
               <img src={photo} alt='photo' className='profileImage' />
             ) : image ? (
-              <img src={image} alt='photo' className='profileImage' />
+              <img src={image} alt='userPhoto' className='profileImage' />
             ) : (
               <AccountCircleIcon className='profileIcon' />
             )}
-            {!image && (
+            {!image && !uploadSuccess && (
               <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                   type='file'

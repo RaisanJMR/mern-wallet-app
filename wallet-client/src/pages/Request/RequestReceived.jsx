@@ -16,7 +16,6 @@ import {
   payReset,
 } from '../../features/request/requestSlice'
 
-
 const RequestReceived = () => {
   const dispatch = useDispatch()
 
@@ -64,6 +63,7 @@ const RequestReceived = () => {
       </div>
     )
   }
+
   if (reqSuccess) {
     return (
       <div className='circularProgressContainer req'>
@@ -140,7 +140,6 @@ const RequestReceived = () => {
               </TableCell>
             </TableRow>
           ))}
-      
         </TableBody>
       </Table>
     </TableContainer>

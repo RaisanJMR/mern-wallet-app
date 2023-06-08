@@ -14,6 +14,7 @@ const RequestSend = () => {
   const dispatch = useDispatch()
   const { send, isLoading } = useSelector((state) => state.request)
   console.log(send)
+  
   useEffect(() => {
     return () => {
       dispatch(reset())
@@ -23,6 +24,7 @@ const RequestSend = () => {
   useEffect(() => {
     dispatch(requestSend())
   }, [dispatch])
+
   if (isLoading) {
     return (
       <div className='circularProgressContainer'>

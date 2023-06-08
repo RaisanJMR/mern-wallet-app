@@ -10,7 +10,12 @@ const transferAmount = asyncHandler(async (req, res) => {
   const { amount, sender, receiver, transactionType, reference } = req.body
   const receiverUser = await User.findById(receiver)
 
-  if (req.user._id != sender || !receiverUser || req.user.isVerified != true) {
+  if (
+    req.user._id != sender ||
+    !receiverUser ||
+    req.user.isVerified != true ||
+    !receiverUser.isVerified
+  ) {
     res.status(400)
     throw new Error('sender not verified or loggedin or receiver not found')
   } else {
@@ -147,8 +152,6 @@ const deposit = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('user not found')
   }
-
-  // res.status(200).json(req.user)
 })
 
 module.exports = {

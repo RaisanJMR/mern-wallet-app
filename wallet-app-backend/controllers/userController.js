@@ -133,9 +133,13 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route   GET /api/users/verify/:id
 // @access  Protect
 const verify = asyncHandler(async (req, res) => {
-  const user = await User.findByIdAndUpdate(req.params.id, {
-    isVerified: req.body.isVerified,
-  })
+  const user = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      isVerified: req.body.isVerified,
+    },
+    { new: true }
+  )
   if (user) {
     res
       .status(201)

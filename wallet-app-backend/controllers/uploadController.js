@@ -4,7 +4,6 @@ const User = require('../models/userModal')
 
 const uploadImage = asyncHandler(async (req, res) => {
   const { photo } = req.body
- 
   try {
     const uploadedImage = await cloudinary.uploader.upload(
       photo,
@@ -17,10 +16,16 @@ const uploadImage = asyncHandler(async (req, res) => {
       }
     )
     const { secure_url } = uploadedImage
-    const newUser = await User.findByIdAndUpdate(req.params.id, {
-      image: secure_url,
-    })
-    newUser.image = secure_url
+
+    const newUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        image: secure_url,
+      },
+      { new: true }
+    )
+
+    // newUser.image = secure_url
     res.status(201).json(newUser)
   } catch (error) {
     res.status(500)

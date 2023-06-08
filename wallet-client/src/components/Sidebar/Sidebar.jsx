@@ -70,34 +70,6 @@ const Sidebar = () => {
               <span>Requests</span>
             </li>
           </Link>
-          <Link to='/products' style={{ textDecoration: 'none' }}>
-            <li>
-              <CategoryRoundedIcon className='icon' />
-              <span>Products</span>
-            </li>
-          </Link>
-          <p className='title'>USEFUL</p>
-          <li>
-            <CircleNotificationsRoundedIcon className='icon' />
-            <span>Notifications</span>
-          </li>
-          <p className='title'>SERVICE</p>
-          <li>
-            <QueryStatsRoundedIcon className='icon' />
-            <span>Stats</span>
-          </li>
-          <li>
-            <MonitorHeartRoundedIcon className='icon' />
-            <span>System Health</span>
-          </li>
-          <li>
-            <ChecklistRoundedIcon className='icon' />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsRoundedIcon className='icon' />
-            <span>Settings</span>
-          </li>
           <p className='title'>USER</p>
           <Link to='/profile' style={{ textDecoration: 'none' }}>
             <li>
@@ -105,17 +77,11 @@ const Sidebar = () => {
               <span>Profile</span>
             </li>
           </Link>
-          {/* <li onClick={() => dispatch({ type: 'LOGOUT' })}> */}
           <li onClick={handleLogout}>
             <LogoutRoundedIcon className='icon' />
             <span>Logout</span>
           </li>
         </ul>
-      </div>
-      <div className='bottom'>
-        <div className='colorOption'></div>
-        <div className='colorOption'></div>
-        <div className='colorOption'></div>
       </div>
     </div>
   )

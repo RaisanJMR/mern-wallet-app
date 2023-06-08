@@ -3,9 +3,9 @@ import uploadService from './uploadService'
 
 const initialState = {
   userImg: null,
-  isLoading: false,
-  isSuccess: false,
-  isError: false,
+  uploadLoading: false,
+  uploadSuccess: false,
+  uploadError: false,
   message: '',
 }
 
@@ -34,16 +34,16 @@ export const uploadSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(uploadProfileImage.pending, (state) => {
-        state.isLoading = true
+        state.uploadLoading = true
       })
       .addCase(uploadProfileImage.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-        state.userImg = action.payload
+        state.uploadLoading = false
+        state.uploadSuccess = true
+        state.userImg = action.payload.image
       })
       .addCase(uploadProfileImage.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
+        state.uploadLoading = false
+        state.uploadError = true
         state.message = action.payload
       })
   },

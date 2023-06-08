@@ -103,7 +103,7 @@ const updateRequestStats = asyncHandler(async (req, res) => {
       })
 
       // await transaction.save()
-      
+
       // deduct the amount from the sender
       await User.findByIdAndUpdate(sender, {
         $inc: { balance: -amount },
