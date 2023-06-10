@@ -1,26 +1,16 @@
 import { Link } from 'react-router-dom'
 import './Sidebar.scss'
-import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded'
-import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded'
-import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded'
-import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded'
-import MonitorHeartRoundedIcon from '@mui/icons-material/MonitorHeartRounded'
-import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded'
-import SettingsApplicationsRoundedIcon from '@mui/icons-material/SettingsApplicationsRounded'
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 import CompareArrowsRoundedIcon from '@mui/icons-material/CompareArrowsRounded'
 import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded'
-import { useContext, useState } from 'react'
-import { UserContext } from '../../context/userContext'
 import { logout, reset } from '../../features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
-  // const { dispatch } = useContext(UserContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAdmin } = useSelector((state) => state.auth.user)

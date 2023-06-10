@@ -12,12 +12,11 @@ import {
   reset,
   getReceivedTransactions,
 } from '../../features/transactions/transactionSlice'
-import { CircularProgress } from '@mui/material'
+import Loader from '../../components/Loader/Loader'
 
 const Received = () => {
   const dispatch = useDispatch()
   const { received, isLoading } = useSelector((state) => state.transact)
-  console.log(received)
   useEffect(() => {
     return () => {
       dispatch(reset())
@@ -37,11 +36,7 @@ const Received = () => {
   }
 
   if (isLoading) {
-    return (
-      <div className='circularProgressContainer'>
-        <CircularProgress />
-      </div>
-    )
+    return <Loader />
   }
 
   return (

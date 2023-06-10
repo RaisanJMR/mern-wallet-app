@@ -45,7 +45,19 @@ const getMoneyReceive = async (token) => {
     },
   }
   const response = await axios.get(API_URL + 'get_money_receive', config)
-  console.log(response.data)
+  return response.data
+}
+const addMoney = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  const response = await axios.post(
+    API_URL + 'deposit',
+    { amount: data.amount },
+    config
+  )
   return response.data
 }
 
@@ -53,7 +65,8 @@ const transactionService = {
   sendMoney,
   getTransactions,
   getMoneySend,
-  getMoneyReceive
+  getMoneyReceive,
+  addMoney,
 }
 
 export default transactionService

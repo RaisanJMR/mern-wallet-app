@@ -1,5 +1,4 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
 import './Home.scss'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'

@@ -1,6 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const ProtectedRoutes = ({ user, redirectPath = '/' }) => {
+const ProtectedRoutes = ({ redirectPath = '/' }) => {
+  const { user } = useSelector((state) => state.auth)
   if (!user) {
     return <Navigate to={redirectPath} replace />
   }

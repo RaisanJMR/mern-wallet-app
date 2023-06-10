@@ -27,6 +27,11 @@ const requestAmount = asyncHandler(async (req, res) => {
         description,
       })
       await request.save()
+      await User.findByIdAndUpdate(
+        receiver,
+        { $inc: { requestReceived: 1 } },
+        { new: true }
+      )
       res.status(201).json(request)
     } catch (error) {
       throw new Error(error)
@@ -46,6 +51,7 @@ const getAllRequest = asyncHandler(async (req, res) => {
       .populate('sender')
       .populate('receiver')
       .sort({ createdAt: -1 })
+      
     if (requests) {
       return res.status(200).json(requests)
     }

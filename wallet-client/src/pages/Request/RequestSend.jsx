@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -9,12 +8,12 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { reset, requestSend } from '../../features/request/requestSlice'
+import Loader from '../../components/Loader/Loader'
 
 const RequestSend = () => {
   const dispatch = useDispatch()
   const { send, isLoading } = useSelector((state) => state.request)
-  console.log(send)
-  
+
   useEffect(() => {
     return () => {
       dispatch(reset())
@@ -26,11 +25,7 @@ const RequestSend = () => {
   }, [dispatch])
 
   if (isLoading) {
-    return (
-      <div className='circularProgressContainer'>
-        <CircularProgress />
-      </div>
-    )
+    return <Loader />
   }
   const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
   const optionsTime = {

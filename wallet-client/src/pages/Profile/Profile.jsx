@@ -9,6 +9,7 @@ import { getusers, reset } from '../../features/auth/authSlice'
 import { toast } from 'react-toastify'
 import { uploadProfileImage } from '../../features/upload/uploadSlice'
 import CircularProgress from '@mui/material/CircularProgress'
+import Loader from '../../components/Loader/Loader'
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,6 @@ const Profile = () => {
   const [file, setFile] = useState('')
   const [photo, setPhoto] = useState('')
 
-
   const previewFiles = (file) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -29,7 +29,6 @@ const Profile = () => {
       setPhoto(reader.result)
     }
   }
-
 
   const handleChange = (e) => {
     const file = e.target.files[0]
@@ -45,7 +44,11 @@ const Profile = () => {
     }
     dispatch(uploadProfileImage(data))
   }
-
+  useEffect(() => {
+    if (uploadSuccess) {
+      toast.success('image uploaded')
+    }
+  }, [uploadSuccess])
   return (
     <div className='profile'>
       <Sidebar />
@@ -53,27 +56,32 @@ const Profile = () => {
         <Navbar />
         <div className='userProfile'>
           <div className='profilePhoto'>
-            {uploadLoading && <CircularProgress />}
-            <h1>{name}</h1>
-            {photo ? (
-              <img src={photo} alt='photo' className='profileImage' />
-            ) : image ? (
-              <img src={image} alt='userPhoto' className='profileImage' />
+            {uploadLoading ? (
+              <Loader />
             ) : (
-              <AccountCircleIcon className='profileIcon' />
-            )}
-            {!image && !uploadSuccess && (
-              <form onSubmit={(e) => handleSubmit(e)}>
-                <input
-                  type='file'
-                  name='photo'
-                  id='photo'
-                  onChange={(e) => handleChange(e)}
-                />
-                <div className='uploadBtn'>
-                  <button type='submit'>upload new photo</button>
-                </div>
-              </form>
+              <>
+                <h1>{name}</h1>
+                {photo ? (
+                  <img src={photo} alt='photo' className='profileImage' />
+                ) : image ? (
+                  <img src={image} alt='userPhoto' className='profileImage' />
+                ) : (
+                  <AccountCircleIcon className='profileIcon' />
+                )}
+                {!image && !uploadSuccess && (
+                  <form onSubmit={(e) => handleSubmit(e)}>
+                    <input
+                      type='file'
+                      name='photo'
+                      id='photo'
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <div className='uploadBtn'>
+                      <button type='submit'>upload new photo</button>
+                    </div>
+                  </form>
+                )}
+              </>
             )}
           </div>
           <div className='profileDetails'>

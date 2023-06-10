@@ -9,10 +9,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getusers, reset } from '../../features/auth/authSlice'
 import './UserList.scss'
 import { useEffect, useState } from 'react'
-import Spinner from '../Spinner/Spinner'
 import SendModal from '../Modal/SendModal'
 import { CircularProgress } from '@mui/material'
 import RequestModal from '../Modal/RequestModal'
+import Avatar from '../../assets/avatar.png'
+import Loader from '../Loader/Loader'
 
 const List = () => {
   const [sendModal, setSendModal] = useState(false)
@@ -34,14 +35,6 @@ const List = () => {
   useEffect(() => {
     dispatch(getusers())
   }, [dispatch])
-
-  if (isLoading) {
-    return (
-      <div className='circularProgressContainer'>
-        <CircularProgress />
-      </div>
-    )
-  }
 
   const handleSendModal = (userId) => {
     setReceiverId(userId)
@@ -66,47 +59,59 @@ const List = () => {
           setRequestModalOpen={setRequestModal}
         />
       )}
-      <TableContainer component={Paper} className='table'>
-        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-          <TableHead>
-            <TableRow>
-              <TableCell className='tableCell'>Acc No:</TableCell>
-              <TableCell className='tableCell'>Name</TableCell>
-              <TableCell className='tableCell'>Email</TableCell>
-              <TableCell className='tableCell'>Phone</TableCell>
-              <TableCell className='tableCell'>Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map((user) => (
-              <TableRow key={user._id}>
-                <TableCell className='tableCell'>{user._id}</TableCell>
-                <TableCell className='tableCell'>
-                  <div className='cellWrapper'>
-                    <img src={user.image} alt={user.name} className='image' />
-                    {user.name}
-                  </div>
-                </TableCell>
-                <TableCell className='tableCell'>{user.email}</TableCell>
-                <TableCell className='tableCell'>{user.phone}</TableCell>
-                <TableCell className='tableCell'>
-                  <span
-                    className='send'
-                    onClick={() => handleSendModal(user._id)}>
-                    send
-                  </span>
-
-                  <span
-                    className='req'
-                    onClick={() => handleRequestModal(user._id)}>
-                    request
-                  </span>
-                </TableCell>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <TableContainer component={Paper} className='table'>
+          <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                <TableCell className='tableCell'>Acc No:</TableCell>
+                <TableCell className='tableCell'>Name</TableCell>
+                <TableCell className='tableCell'>Email</TableCell>
+                <TableCell className='tableCell'>Phone</TableCell>
+                <TableCell className='tableCell'>Action</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {users.map((user) => (
+                <TableRow key={user._id}>
+                  <TableCell className='tableCell'>{user._id}</TableCell>
+                  <TableCell className='tableCell'>
+                    <div className='cellWrapper'>
+                      {user.image ? (
+                        <img
+                          src={user.image}
+                          alt={user.name}
+                          className='image'
+                        />
+                      ) : (
+                        <img src={Avatar} alt={user.name} className='image' />
+                      )}
+                      {user.name}
+                    </div>
+                  </TableCell>
+                  <TableCell className='tableCell'>{user.email}</TableCell>
+                  <TableCell className='tableCell'>{user.phone}</TableCell>
+                  <TableCell className='tableCell'>
+                    <span
+                      className='send'
+                      onClick={() => handleSendModal(user._id)}>
+                      send
+                    </span>
+
+                    <span
+                      className='req'
+                      onClick={() => handleRequestModal(user._id)}>
+                      request
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </>
   )
 }

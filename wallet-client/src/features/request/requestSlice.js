@@ -9,6 +9,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  reqReceivedNo: '',
   reqSuccess: false,
   reqLoading: false,
   message: '',
@@ -90,7 +91,17 @@ export const requestSlice = createSlice({
   name: 'request',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      (state.request = null),
+        (state.send = []),
+        (state.received = []),
+        (state.isError = false),
+        (state.isSuccess = false),
+        (state.isLoading = false),
+        (state.reqSuccess = false),
+        (state.reqLoading = false),
+        (state.message = '')
+    },
     payReset: (state) => {
       state.reqSuccess = false
     },
@@ -130,6 +141,7 @@ export const requestSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.received = action.payload
+        state.reqReceivedNo = action.payload.length
       })
       .addCase(requestReceive.rejected, (state, action) => {
         state.isLoading = false

@@ -6,11 +6,17 @@ import './Widget.scss'
 import AssignmentReturnedRoundedIcon from '@mui/icons-material/AssignmentReturnedRounded'
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
 import CompareArrowsRoundedIcon from '@mui/icons-material/CompareArrowsRounded'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import AddMoneyModal from './AddMoneyModal'
 
 const Widget = ({ type }) => {
-  const { balance } = useSelector((state) => state.auth.user)
+  const [openModal, setOpenModal] = useState(false)
+
+  const { balance, moneySend, moneyReceived, requestReceived } = useSelector(
+    (state) => state.auth.user
+  )
   let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -18,15 +24,16 @@ const Widget = ({ type }) => {
     minimumFractionDigits: 0,
   })
   let data
-  const amount = 1000
+
   const diff = 20
   switch (type) {
     case 'user':
       data = {
-        title: 'TRANSACTIONS',
+        title: 'MONEY SEND',
         isMoney: false,
-        link: "/transactions",
-        linkText: 'See all transactions',
+        link: '/transactions',
+        isSend: true,
+        linkText: 'money send to',
         icon: (
           <CompareArrowsRoundedIcon
             className='icon'
@@ -37,10 +44,11 @@ const Widget = ({ type }) => {
       break
     case 'order':
       data = {
-        title: 'REQUESTS',
+        title: 'MONEY RECEIVED',
         isMoney: false,
-        link: "/requests",
-        linkText: 'View all requests',
+        link: '/transactions',
+        isReceived: true,
+        linkText: 'money received',
         icon: (
           <AssignmentReturnedRoundedIcon
             className='icon'
@@ -54,10 +62,11 @@ const Widget = ({ type }) => {
       break
     case 'earning':
       data = {
-        title: 'MONEY SEND',
+        title: 'REQUEST RECEIVED',
         isMoney: true,
-        link: "/latest",
-        linkText: 'latest send transaction',
+        link: '/requests',
+        isAnyReq: true,
+        linkText: 'requests received',
         icon: (
           <MonetizationOnRounded
             className='icon'
@@ -70,9 +79,9 @@ const Widget = ({ type }) => {
       data = {
         title: 'BALANCE',
         isMoney: true,
-        link: "/balance",
+        link: '/balance',
         isBalance: true,
-        linkText: 'See details',
+        linkText: 'add money',
         icon: (
           <AccountBalanceWalletRounded
             className='icon'
@@ -85,17 +94,34 @@ const Widget = ({ type }) => {
     default:
       break
   }
+
+  const addMoney = () => {
+    setOpenModal(true)
+  }
+
   return (
     <div className='widget'>
+      {openModal && <AddMoneyModal setAddMoneyModal={setOpenModal} />}
       <div className='left'>
         <span className='title'>{data.title}</span>
         <span className='counter'>
-          {/* {data.isMoney && '$'} */}
-          {data.isBalance ? USDollar.format(balance) : amount}
+          {data.isSend && moneySend}
+          {data.isReceived && moneyReceived}
+          {data.isAnyReq && requestReceived}
+          {data.isBalance && USDollar.format(balance)}
         </span>
-        <Link to={data.link} className='link'>
-          <span>{data.linkText}</span>
-        </Link>
+        {data.link === '/balance' ? (
+          <span
+            className='link'
+            style={{ cursor: 'pointer' }}
+            onClick={addMoney}>
+            add money
+          </span>
+        ) : (
+          <Link to={data.link} className='link'>
+            <span>{data.linkText}</span>
+          </Link>
+        )}
       </div>
       <div className='right'>
         <div className='percentage positive'>

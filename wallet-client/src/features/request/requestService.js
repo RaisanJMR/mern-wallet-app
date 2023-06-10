@@ -42,7 +42,6 @@ const updateRequestStatus = async (updatedRequest, token) => {
     updatedRequest,
     config
   )
-  console.log(response.data)
   return response.data
 }
 

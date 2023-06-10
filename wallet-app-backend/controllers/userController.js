@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 const User = require('../models/userModal')
+const crypto = require('crypto')
 
 // @desc    Register new user
 // @route   POST /api/users/register
@@ -14,20 +15,22 @@ const register = asyncHandler(async (req, res) => {
     password,
     address,
     identificationType,
-    identificationNumber,
-    isAdmin,
-    isVerified,
+    // identificationNumber,
+    // isAdmin,
+    // isVerified,
     balance,
+    moneyReceived,
+    moneySend,
+    requestReceived,
   } = req.body
-  // console.log(req.body)
+  
   if (
     !name ||
     !email ||
     !password ||
     !phone ||
     !address ||
-    !identificationType ||
-    !identificationNumber
+    !identificationType
   ) {
     res.status(400)
     throw new Error('Please add all fields')
@@ -54,7 +57,10 @@ const register = asyncHandler(async (req, res) => {
     phone,
     address,
     identificationType,
-    identificationNumber,
+    moneySend,
+    moneyReceived,
+    requestReceived,
+    identificationNumber: crypto.randomBytes(6).toString('hex'),
     isAdmin: false,
     isVerified: true,
   })
@@ -67,6 +73,9 @@ const register = asyncHandler(async (req, res) => {
       email: user.email,
       phone: user.phone,
       address: user.address,
+      moneySend: user.moneySend,
+      moneyReceived: user.moneyReceived,
+      requestReceived: user.requestReceived,
       identificationType: user.identificationType,
       identificationNumber: user.identificationNumber,
       isAdmin: user.isAdmin,

@@ -37,6 +37,22 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 1000,
     },
+    moneySend: {
+      type: Number,
+      default: 0,
+    },
+    moneyReceived: {
+      type: Number,
+      default: 0,
+    },
+    requestReceived: {
+      type: Number,
+      default: 0,
+    },
+    transactionLimit: {
+      type: Number,
+      default: 5000, // Daily transaction limit in rupees
+    },
     address: {
       type: String,
       required: true,

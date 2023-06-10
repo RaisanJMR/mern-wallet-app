@@ -5,11 +5,8 @@ const colors = require('colors')
 const cors = require('cors')
 const connectDB = require('./config/db')
 const { errorHandler } = require('./middleware/errorHandler')
-const cloudinary = require('./utils/cloudinary')
-const Media = require('./models/mediaModal')
 const fileUpload = require('express-fileupload')
-const userModal = require('./models/userModal')
-const asyncHandler = require('express-async-handler')
+
 
 connectDB()
 
@@ -33,27 +30,6 @@ app.use('/api/', require('./routes/transactionRoutes'))
 app.use('/api/', require('./routes/requestRoutes'))
 app.use('/api/', require('./routes/uploadRoutes'))
 
-// app.post(
-//   '/api/upload/:id',
-//   asyncHandler(async (req, res) => {
-//     const { image } = req.body
-//     const uploadedImage = await cloudinary.uploader.upload(
-//       image,
-//       { folder: 'profile', upload_preset: 'my_media', use_filename: true },
-//       function (error, result) {
-//         if (error) {
-//           console.log(error)
-//         }
-//         console.log(result)
-//       }
-//     )
-//     try {
-//       res.status(200).json(uploadedImage)
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   })
-// )
 
 app.get('/', (req, res) => {
   res.send('api is running...')

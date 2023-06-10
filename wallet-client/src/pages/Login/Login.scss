@@ -1,3 +1,5 @@
+@import '../../variables/variables.scss';
+
 .login {
   height: 100vh;
   font-weight: 500;
@@ -7,7 +9,7 @@
   justify-content: center;
   a {
     text-decoration: underline;
-    color: #7b2cbf;
+    color: $primaryColor;
   }
   .login__container {
     min-width: 600px;
@@ -40,7 +42,7 @@
     border-radius: 0.313rem;
     border: none;
     outline: none;
-    background-color: #7b2cbf;
+    background-color: $primaryColor;
     color: #ffffff;
     text-transform: capitalize;
     letter-spacing: 1px;
@@ -48,7 +50,7 @@
     transition: all 0.1s ease-in-out;
     margin-bottom: 0.625rem;
     &:hover {
-      background-color: rgba(123, 44, 191, 0.8);
+      background-color: $primaryHover;
     }
   }
   .small__text {
@@ -57,7 +59,7 @@
     font-size: 14px;
     .registerLink {
       text-decoration: none;
-      color: #7b2cbf;
+      color: $primaryColor;
     }
   }
 }

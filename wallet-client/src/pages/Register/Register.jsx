@@ -12,20 +12,14 @@ const Register = () => {
     password: '',
     phone: '',
     address: '',
-    identificationNumber: '',
     identificationType: '',
   })
-  const {
-    name,
-    email,
-    password,
-    phone,
-    address,
-    identificationNumber,
-    identificationType,
-  } = formData
+
+  const { name, email, password, phone, address, identificationType } = formData
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   )
@@ -34,7 +28,6 @@ const Register = () => {
     if (isError) {
       alert(message)
     }
-    // Redirect when logged in
     if (isSuccess || user) {
       navigate('/home')
     }
@@ -56,10 +49,8 @@ const Register = () => {
       password,
       phone,
       address,
-      identificationNumber,
       identificationType,
     }
-    // console.log(userData)
     dispatch(register(userData))
   }
 
@@ -72,7 +63,7 @@ const Register = () => {
       <div className='login__container'>
         <div className='login__header'>
           <h1>create an account</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+          <p>Get started with our platform by creating your account.</p>
         </div>
         <section className='login__form'>
           <form onSubmit={onSubmit}>
@@ -130,17 +121,6 @@ const Register = () => {
                 <option value='passport'>passport</option>
                 <option value='national ID'>national ID</option>
               </select>
-            </div>
-            <div className='form__control'>
-              <input
-                type='text'
-                name='identificationNumber'
-                id='identificationNumber'
-                value={identificationNumber}
-                onChange={onChange}
-                placeholder='please enter identification number'
-                required
-              />
             </div>
             <div className='form__control'>
               <input

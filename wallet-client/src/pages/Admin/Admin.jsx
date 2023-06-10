@@ -11,9 +11,10 @@ import { TableContainer, TableHead, TableRow } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { getusers } from '../../features/auth/authSlice'
 import { verify, verifyReset } from '../../features/verify/verifySlice'
+import Loader from '../../components/Loader/Loader'
 const Admin = () => {
   const dispatch = useDispatch()
-  const { users, isSuccess, isLoading } = useSelector((state) => state.auth)
+  const { users, isLoading } = useSelector((state) => state.auth)
   const { verifySuccess } = useSelector((state) => state.verify)
 
   useEffect(() => {
@@ -37,65 +38,72 @@ const Admin = () => {
       <div className='listContainer'>
         <Navbar />
         <div className='usersList'>
-          <h1>users page</h1>
+          <h1>users </h1>
           <div className='usersListContainer'>
-            {isLoading && (
-              <div className='circularProgressContainer'>
-                <CircularProgress />
-              </div>
-            )}
-            <TableContainer component={Paper} className='table'>
-              <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className='tableCell tableHead'>
-                      Acc No:
-                    </TableCell>
-                    <TableCell className='tableCell tableHead'>Name</TableCell>
-                    <TableCell className='tableCell tableHead'>Email</TableCell>
-                    <TableCell className='tableCell tableHead'>Phone</TableCell>
-
-                    <TableCell className='tableCell tableHead'>
-                      status
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {users.map((user) => (
-                    <TableRow key={user._id}>
-                      <TableCell className='tableCell'>{user._id}</TableCell>
-                      <TableCell className='tableCell'>
-                        <div className='cellWrapper'>
-                          <img
-                            src={user.image}
-                            alt={user.name}
-                            className='image'
-                          />
-                          {user.name}
-                        </div>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <TableContainer component={Paper} className='table'>
+                <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className='tableCell tableHead'>
+                        Acc No:
                       </TableCell>
-                      <TableCell className='tableCell'>{user.email}</TableCell>
-                      <TableCell className='tableCell'>{user.phone}</TableCell>
-                      <TableCell className='tableCell'>
-                        {user.isVerified ? (
-                          <button disabled>verified</button>
-                        ) : (
-                          <button
-                            className='verifyBtn'
-                            onClick={() => handleVerify(user)}>
-                            verify
-                          </button>
-                        )}
+                      <TableCell className='tableCell tableHead'>
+                        Name
+                      </TableCell>
+                      <TableCell className='tableCell tableHead'>
+                        Email
+                      </TableCell>
+                      <TableCell className='tableCell tableHead'>
+                        Phone
+                      </TableCell>
+
+                      <TableCell className='tableCell tableHead'>
+                        status
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {users.map((user) => (
+                      <TableRow key={user._id}>
+                        <TableCell className='tableCell'>{user._id}</TableCell>
+                        <TableCell className='tableCell'>
+                          <div className='cellWrapper'>
+                            <img
+                              src={user.image}
+                              alt={user.name}
+                              className='image'
+                            />
+                            {user.name}
+                          </div>
+                        </TableCell>
+                        <TableCell className='tableCell'>
+                          {user.email}
+                        </TableCell>
+                        <TableCell className='tableCell'>
+                          {user.phone}
+                        </TableCell>
+                        <TableCell className='tableCell'>
+                          {user.isVerified ? (
+                            <button disabled>verified</button>
+                          ) : (
+                            <button
+                              className='verifyBtn'
+                              onClick={() => handleVerify(user)}>
+                              verify
+                            </button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
           </div>
         </div>
-
-        {/* <Datatable /> */}
       </div>
     </div>
   )

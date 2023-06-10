@@ -6,6 +6,7 @@ const initialState = {
   transactions: [],
   send: [],
   received: [],
+  moneyAdded: '',
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -18,6 +19,23 @@ export const sendMoney = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.user.token
       return await transactionService.sendMoney(transaction, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+export const addBalance = createAsyncThunk(
+  'transaction/addMoney',
+  async (data, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token
+      return await transactionService.addMoney(data, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -65,7 +83,7 @@ export const getSendTransactions = createAsyncThunk(
   }
 )
 export const getReceivedTransactions = createAsyncThunk(
-  'transaction/moneyReceiced',
+  'transaction/moneyReceived',
   async (__, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
@@ -145,6 +163,20 @@ export const transactionSlice = createSlice({
         state.transactions = action.payload
       })
       .addCase(getTransactions.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      // add money
+      .addCase(addBalance.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(addBalance.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.moneyAdded = action.payload
+      })
+      .addCase(addBalance.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

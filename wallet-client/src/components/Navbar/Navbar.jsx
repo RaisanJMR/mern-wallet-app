@@ -6,7 +6,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded'
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded'
 import ListRoundedIcon from '@mui/icons-material/ListRounded'
 import './Navbar.scss'
-import Avatar from './avatar.png'
+import Avatar from '../../assets/avatar.png'
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {

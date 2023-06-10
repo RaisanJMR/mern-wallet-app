@@ -2,7 +2,6 @@ import axios from 'axios'
 const API_URL = 'http://localhost:8080/api/'
 
 const verifyUser = async (data, token) => {
-  console.log('from service' + data.isVerified)
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -13,7 +12,6 @@ const verifyUser = async (data, token) => {
     { isVerified: data.isVerified },
     config
   )
-  console.log(response.data)
   return response.data
 }
 

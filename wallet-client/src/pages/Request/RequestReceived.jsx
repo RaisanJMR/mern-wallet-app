@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -15,11 +14,12 @@ import {
   updateRequest,
   payReset,
 } from '../../features/request/requestSlice'
+import Loader from '../../components/Loader/Loader'
 
 const RequestReceived = () => {
   const dispatch = useDispatch()
 
-  const { received, isLoading, isSuccess, reqSuccess } = useSelector(
+  const { received, isLoading, reqSuccess } = useSelector(
     (state) => state.request
   )
 
@@ -56,20 +56,8 @@ const RequestReceived = () => {
     hour12: true,
   }
 
-  if (isLoading) {
-    return (
-      <div className='circularProgressContainer'>
-        <CircularProgress />
-      </div>
-    )
-  }
-
-  if (reqSuccess) {
-    return (
-      <div className='circularProgressContainer req'>
-        <CircularProgress />
-      </div>
-    )
+  if (isLoading || reqSuccess) {
+    return <Loader />
   }
 
   return (

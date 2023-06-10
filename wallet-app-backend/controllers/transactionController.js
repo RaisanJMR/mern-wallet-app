@@ -33,15 +33,23 @@ const transferAmount = asyncHandler(async (req, res) => {
       transactionId: crypto.randomBytes(5).toString('hex'),
     })
     await transfer.save()
-    // decrease the sender's balance
     await User.findByIdAndUpdate(sender, {
       $inc: { balance: -amount },
     })
-
-    // increase the receiver's balance
     await User.findByIdAndUpdate(receiver, {
       $inc: { balance: amount },
     })
+    await User.findByIdAndUpdate(
+      sender,
+      { $inc: { moneySend: 1 } },
+      { new: true }
+    )
+    await User.findByIdAndUpdate(
+      receiver,
+      { $inc: { moneyReceived: 1 } },
+      { new: true }
+    )
+
     if (transfer) {
       res.status(201).send({
         _id: transfer._id,
@@ -107,6 +115,7 @@ const getMoneySendTransactions = asyncHandler(async (req, res) => {
       { path: 'sender', select: 'name image' },
       { path: 'receiver', select: 'name image' },
     ])
+
   if (transactions) {
     res.status(200).send(transactions)
   } else {
@@ -122,6 +131,7 @@ const getMoneyReceiveTransactions = asyncHandler(async (req, res) => {
       { path: 'sender', select: 'name image' },
       { path: 'receiver', select: 'name image' },
     ])
+
   if (transactions) {
     res.status(200).send(transactions)
   } else {
@@ -135,19 +145,27 @@ const getMoneyReceiveTransactions = asyncHandler(async (req, res) => {
 // @access  Private
 const deposit = asyncHandler(async (req, res) => {
   const { amount } = req.body
+  console.log(amount)
   const user = await User.findById(req.user._id)
+
   if (user) {
-    const transaction = new Transaction({
-      sender: user._id,
-      receiver: user._id,
-      amount: amount,
-      type: 'deposit',
-      reference: 'user deposit',
-      status: 'success',
-    })
-    await transaction.save()
-    await User.findByIdAndUpdate(user._id, { $inc: { balance: amount } })
-    res.status(200).json(user)
+    // const transaction = new Transaction({
+    //   sender: user._id,
+    //   receiver: user._id,
+    //   amount: amount,
+    //   transactionId: crypto.randomBytes(5).toString('hex'),
+    //   type: 'deposit',
+    //   reference: 'payment reference',
+    //   status: 'success',
+    // })
+
+    // await transaction.save()
+    await User.findByIdAndUpdate(
+      user._id,
+      { $inc: { balance: amount } },
+      { new: true }
+    )
+    res.status(200).json({ msg: `$${amount} added to your account` })
   } else {
     res.status(400)
     throw new Error('user not found')

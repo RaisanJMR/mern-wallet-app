@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import Table from '@mui/material/Table'
-import CircularProgress from '@mui/material/CircularProgress'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
@@ -13,14 +12,14 @@ import {
   reset,
 } from '../../features/transactions/transactionSlice'
 import './Transactions.scss'
-
+import Loader from '../../components/Loader/Loader'
 
 const Send = () => {
-
   const dispatch = useDispatch()
+
   const { send, isLoading } = useSelector((state) => state.transact)
 
-  useEffect(() => { 
+  useEffect(() => {
     return () => {
       dispatch(reset())
     }
@@ -30,24 +29,18 @@ const Send = () => {
     dispatch(getSendTransactions())
   }, [dispatch])
 
-
   if (isLoading) {
-    return (
-      <div className='circularProgressContainer'>
-        <CircularProgress />
-      </div>
-    )
+    return <Loader />
   }
 
-
   const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
+
   const optionsTime = {
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
     hour12: true,
   }
-
 
   return (
     <TableContainer component={Paper} className='table'>
