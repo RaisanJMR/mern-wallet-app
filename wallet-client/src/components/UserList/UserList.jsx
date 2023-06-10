@@ -10,7 +10,6 @@ import { getusers, reset } from '../../features/auth/authSlice'
 import './UserList.scss'
 import { useEffect, useState } from 'react'
 import SendModal from '../Modal/SendModal'
-import { CircularProgress } from '@mui/material'
 import RequestModal from '../Modal/RequestModal'
 import Avatar from '../../assets/avatar.png'
 import Loader from '../Loader/Loader'
@@ -66,11 +65,11 @@ const List = () => {
           <Table sx={{ minWidth: 650 }} aria-label='simple table'>
             <TableHead>
               <TableRow>
-                <TableCell className='tableCell'>Acc No:</TableCell>
-                <TableCell className='tableCell'>Name</TableCell>
-                <TableCell className='tableCell'>Email</TableCell>
-                <TableCell className='tableCell'>Phone</TableCell>
-                <TableCell className='tableCell'>Action</TableCell>
+                <TableCell className='tableCell tableHead'>Acc No:</TableCell>
+                <TableCell className='tableCell tableHead'>Name</TableCell>
+                <TableCell className='tableCell tableHead'>Email</TableCell>
+                <TableCell className='tableCell tableHead'>Phone</TableCell>
+                <TableCell className='tableCell tableHead'>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

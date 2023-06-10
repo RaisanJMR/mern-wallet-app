@@ -1,12 +1,10 @@
-@import '../../variables/variables.scss';
+@import '../../Helper/helper.scss';
 
 .login {
   height: 100vh;
   font-weight: 500;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flexPreset();
   a {
     text-decoration: underline;
     color: $primaryColor;
@@ -28,12 +26,8 @@
     width: 100%;
     input,
     select {
-      width: 100%;
-      padding: 0.625rem;
       margin-bottom: 1.25rem;
-      border: 1px solid #e5e5e5;
-      outline: none;
-      font-weight: 500;
+      @include formInputStyle(100%);
     }
   }
   .btn {

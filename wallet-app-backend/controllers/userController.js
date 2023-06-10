@@ -15,15 +15,12 @@ const register = asyncHandler(async (req, res) => {
     password,
     address,
     identificationType,
-    // identificationNumber,
-    // isAdmin,
-    // isVerified,
     balance,
     moneyReceived,
     moneySend,
     requestReceived,
   } = req.body
-  
+
   if (
     !name ||
     !email ||
@@ -83,8 +80,6 @@ const register = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     })
   } else {
-    // 400 Bad Request
-
     res.status(400)
     throw new Error('Invalid user data')
   }
@@ -102,7 +97,6 @@ const login = asyncHandler(async (req, res) => {
     delete userObj.password
     res.status(200).json({ ...userObj, token: generateToken(user._id) })
   } else {
-    // 401 Unauthorized
     res.status(401)
     throw new Error('Invalid credentials')
   }
@@ -158,6 +152,18 @@ const verify = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
+// @desc    get uploaded image
+// @route   GET /api/users/get_image
+// @access  Protect
+const getImage = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+  if (user.image) {
+    res.status(201).json(user.image)
+  } else {
+    res.status(404)
+    throw new Error('No user image')
+  }
+})
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -171,4 +177,5 @@ module.exports = {
   currentUser,
   getUsers,
   verify,
+  getImage,
 }

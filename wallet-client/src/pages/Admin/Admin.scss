@@ -1,3 +1,5 @@
+@import '../../Helper/helper.scss';
+
 .list {
   display: flex;
   width: 100%;
@@ -6,39 +8,20 @@
     .usersList {
       padding: 1.25rem;
       h1 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        @include headingOne();
       }
       .usersListContainer {
-        padding: 0.625rem;
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
-        .css-18lrjg1-MuiCircularProgress-root {
-          color: #7451f8;
+        @include Shadow();
+        .tableHead {
+          @include tableHead();
         }
-        .circularProgressContainer {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
         button {
-          padding: 0.313rem;
-          background-color: rgb(101 248 81);
-          border-radius: 0.113rem;
-          color: #ffffff;
+          @include requestStatus($verifiedBg, $white);
           cursor: pointer;
-          border: 0;
-          outline: none;
         }
         .verifyBtn {
-          padding: 0.313rem;
-          background-color: #7451f8;
-          border-radius: 0.113rem;
-          color: #ffffff;
+          @include requestStatus($primaryColor, $white);
           cursor: pointer;
-          border: 0;
-          outline: none;
         }
       }
     }

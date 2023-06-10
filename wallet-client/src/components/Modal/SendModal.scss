@@ -1,5 +1,5 @@
-$redColor: red;
-$border: 1px solid $redColor;
+@import '../../Helper/helper.scss';
+
 .sendmodal {
   width: 100%;
   height: 100%;
@@ -7,10 +7,8 @@ $border: 1px solid $redColor;
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1;
+  @include flexPreset();
   .sendModalContainer {
     background-color: #fff;
     width: 600px;
@@ -23,43 +21,32 @@ $border: 1px solid $redColor;
       display: flex;
       flex-direction: column;
       .btn {
-        padding: 0.613rem 0.113rem;
+        padding: 0.613rem;
+        border-radius: 0.313rem;
         width: 30%;
         font-weight: 500;
         align-self: end;
         cursor: pointer;
-        border-radius: 0.313rem;
         border: none;
         outline: none;
-        background-color: #7451f8;
+        background-color: $primaryColor;
         color: #ffffff;
         &:hover {
-          background-color: rgba(116, 81, 248, 0.8);
+          background-color: $primaryHover;
         }
       }
     }
     .formControl {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.25rem;
+      @include formControl();
       label {
-        font-weight: 500;
-        font-size: 0.875rem;
-        color: #696c74;
+        @include labelStyle();
       }
       input,
       select,
       textarea {
-        padding: 0.625rem;
-        border-radius: 0.313rem;
-        width: 70%;
-        border: 1px solid #e5e5e5;
-        outline: none;
-        font-weight: 600;
+        @include formInputStyle(70%);
         &::placeholder {
-          color: #e5e5e5;
-          font-weight: 400;
+          @include placeHolder();
         }
       }
     }
@@ -78,7 +65,6 @@ $border: 1px solid $redColor;
         border-radius: 0.313rem;
         .closeIcon {
           color: #222222;
-          // color: #7451f8;
         }
       }
     }

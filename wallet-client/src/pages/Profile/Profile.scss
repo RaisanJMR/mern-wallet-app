@@ -1,3 +1,5 @@
+@import '../../Helper/helper.scss';
+
 .profile {
   display: flex;
   width: 100%;
@@ -8,9 +10,7 @@
       display: flex;
       gap: 1rem;
       .profilePhoto {
-        padding: 0.625rem;
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        @include Shadow();
         flex: 2;
         display: flex;
         flex-direction: column;
@@ -31,7 +31,7 @@
         .profileIcon {
           width: 12.5rem;
           height: 12.5rem;
-          color: rgba(116, 81, 248,0.5);
+          color: rgba(116, 81, 248, 0.5);
         }
         .uploadBtn {
           display: flex;
@@ -51,9 +51,7 @@
       }
       .profileDetails {
         flex: 6;
-        padding: 0.625rem;
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        @include Shadow();
         form {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -61,13 +59,8 @@
           row-gap: 1rem;
           .form__control {
             padding: 0.5rem 0.5rem;
-            // border: 1px solid red;
             input {
-              width: 100%;
-              padding: 0.625rem;
-              border: 1px solid #e5e5e5;
-              outline: none;
-              font-weight: 600;
+              @include formInputStyle(100%);
             }
           }
           .form__control:last-child {
@@ -81,7 +74,6 @@
               background-color: #7451f8;
               cursor: pointer;
             }
-           
           }
         }
       }

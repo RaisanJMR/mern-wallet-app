@@ -1,3 +1,5 @@
+@import '../../Helper/helper.scss';
+
 .transaction {
   display: flex;
   width: 100%;
@@ -6,74 +8,50 @@
     .transactions {
       padding: 1.25rem;
       h1 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        @include headingOne();
       }
       .transactionsList {
-        padding: 0.625rem;
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        @include Shadow();
         .table {
           .tableCell {
             .deposit {
-              color: #f15bb5;
-              font-weight: 600;
-              background-color: rgb(241 91 181 / 10%);
-              padding: 0.313rem;
-              border-radius: 0.313rem;
+              @include transactionStatus($depositBg, $depositColor);
             }
             .transfer {
-              color: #e63946;
-              font-weight: 600;
-              background-color: rgba(230, 57, 70, 0.1);
-              padding: 0.313rem;
-              border-radius: 0.313rem;
+              @include transactionStatus($transferBg, $transferColor);
             }
             .payment {
-              color: #0077b6;
-              font-weight: 600;
-              background-color: rgb(0, 119, 182, 0.1);
-              padding: 0.313rem;
-              border-radius: 0.313rem;
+              @include transactionStatus($paymentBg, $paymentColor);
             }
             .refund {
-              color: rgb(3, 4, 94);
-              font-weight: 600;
-              background-color: rgb(3, 4, 94, 0.1);
-              padding: 0.313rem;
-              border-radius: 0.313rem;
+              @include transactionStatus($refundBg, $refundColor);
             }
           }
           .tableHead {
-            font-weight: 600;
-            color: #aab0b7;
+            @include tableHead();
           }
-          .date {
-            font-weight: 600;
-          }
-          .time {
-            color: #aab0b7;
-            padding-top: 0.313rem;
-          }
+          // .date {
+          //   font-weight: 600;
+          // }
+          // .time {
+          //   color: #aab0b7;
+          //   padding-top: 0.313rem;
+          // }
+          @include dateAndTime();
           .cellWrapper {
-            font-weight: 600;
+            @include cellWrapper();
           }
         }
         .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-          color: #7451f8;
+          color: $primaryColor;
         }
         .css-1aquho2-MuiTabs-indicator {
-          background-color: #7451f8;
+          background-color: $primaryColor;
         }
         .css-18lrjg1-MuiCircularProgress-root {
-          color: #7451f8;
+          color: $primaryColor;
         }
       }
     }
   }
-}
-.circularProgressContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

@@ -21,7 +21,15 @@ class ErrorBoundary extends Component {
     if (this.state.hasError) {
       // Render fallback UI when an error occurs
       return (
-        <div className='errorBoundary'>
+        <div
+          className='errorBoundary'
+          style={{
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <h2>Something went wrong.</h2>
           <p>Please try again later.</p>
         </div>

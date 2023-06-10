@@ -1,23 +1,20 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './Profile.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { getusers, reset } from '../../features/auth/authSlice'
-import { toast } from 'react-toastify'
-import { uploadProfileImage } from '../../features/upload/uploadSlice'
-import CircularProgress from '@mui/material/CircularProgress'
+import {
+  uploadProfileImage,
+} from '../../features/upload/uploadSlice'
 import Loader from '../../components/Loader/Loader'
 
 const Profile = () => {
   const dispatch = useDispatch()
 
   const { name, _id, image } = useSelector((state) => state.auth.user)
-  const { userImg, uploadLoading, uploadSuccess } = useSelector(
-    (state) => state.upload
-  )
+  const { uploadLoading, uploadSuccess } = useSelector((state) => state.upload)
   const [file, setFile] = useState('')
   const [photo, setPhoto] = useState('')
 
@@ -44,11 +41,7 @@ const Profile = () => {
     }
     dispatch(uploadProfileImage(data))
   }
-  useEffect(() => {
-    if (uploadSuccess) {
-      toast.success('image uploaded')
-    }
-  }, [uploadSuccess])
+
   return (
     <div className='profile'>
       <Sidebar />

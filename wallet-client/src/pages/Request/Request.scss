@@ -1,3 +1,5 @@
+@import '../../Helper/helper.scss';
+
 .request {
   display: flex;
   width: 100%;
@@ -6,74 +8,42 @@
     .requests {
       padding: 1.25rem;
       h1 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        @include headingOne();
       }
       .requestsList {
-        padding: 0.625rem;
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+        @include Shadow();
         .tableHead {
-          font-weight: 600;
-          color: #aab0b7;
+          @include tableHead();
         }
-        .date {
-          font-weight: 600;
-        }
-        .time {
-          color: #aab0b7;
-          padding-top: 0.313rem;
-        }
+        @include dateAndTime();
         .cellWrapper {
-          font-weight: 600;
+          @include cellWrapper();
         }
         .accept {
-          padding: 0.313rem;
-          background-color: #7451f8;
-          border-radius: 0.113rem;
-          color: #ffffff;
+          @include requestStatus($primaryColor, $white);
           cursor: pointer;
-          border: 0;
-          outline: none;
         }
         .pending {
-          padding: 0.313rem;
-          background-color: rgb(230, 57, 70, 0.2);
-          border-radius: 0.313rem;
-          color: rgb(230, 57, 70);
-          font-weight: 600;
-          margin-left: 0;
+          @include requestStatus($pendingBg, $pendingColor);
         }
         .paid {
-          padding: 0.313rem;
-          background-color: rgba(127, 17, 224, 0.6);
-          border-radius: 0.113rem;
-          font-weight: 600;
-          color: #ffffff;
+          @include requestStatus($paidBg, $paidColor);
           cursor: pointer;
-          border: 0;
-          outline: none;
         }
         .accepted {
-          padding: 0.313rem;
-          background-color: rgb(217, 255, 231);
-          border-radius: 0.313rem;
-          font-weight: 600;
-          margin-left: 0;
-          color: rgb(82, 178, 123);
-          background-color: rgb(217, 255, 231);
+          @include requestStatus($acceptedBg, $acceptedColor);
         }
       }
     }
   }
   .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: #7451f8;
+    color: $primaryColor;
   }
   .css-1aquho2-MuiTabs-indicator {
-    background-color: #7451f8;
+    background-color: $primaryColor;
   }
   .css-18lrjg1-MuiCircularProgress-root {
-    color: #7451f8;
+    color: $primaryColor;
     &.req {
       color: red;
     }

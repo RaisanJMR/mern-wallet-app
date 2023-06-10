@@ -1,0 +1,163 @@
+$primaryColor: rgb(116, 81, 248);
+$primaryHover: rgba(116, 81, 248, 0.8);
+$white: rgb(255, 255, 255);
+
+// send btn in home page
+$sendText: rgb(218, 165, 32);
+$sendBg: rgba(189, 189, 3, 0.103);
+
+// request btn in home page
+$requestText: rgb(0, 128, 0);
+$requestBg: rgba(0, 128, 0, 0.151);
+
+// color for table
+$tableHeadColor: rgb(170, 176, 183);
+$timeColor: rgb(170, 176, 182);
+
+// form label color
+$labelColor: rgb(105, 108, 116);
+
+// money request status
+$pendingColor: rgb(230, 57, 70);
+$pendingBg: rgba(230, 57, 70, 0.2);
+
+$paidColor: $white;
+$paidBg: rgba(127, 17, 224, 0.6);
+
+$acceptedColor: rgb(82, 178, 123);
+$acceptedBg: rgb(217, 255, 231);
+
+// transaction status
+$depositColor: rgb(241, 91, 181);
+$depositBg: rgba(224, 153, 196, 0.1);
+
+$transferColor: rgb(230, 57, 70);
+$transferBg: rgba(230, 57, 70, 0.1);
+
+$paymentColor: rgb(0, 119, 182);
+$paymentBg: rgb(0, 119, 182, 0.1);
+
+$refundColor: rgb(3, 4, 94);
+$refundBg: rgba(3, 4, 94, 0.1);
+
+$boxShadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+
+$verifiedBg: rgb(101 248 81);
+
+@mixin requestStatus($bg, $color) {
+  padding: 0.313rem;
+  border-radius: 0.113rem;
+  background-color: $bg;
+  font-weight: 500;
+  margin-left: 0;
+  color: $color;
+  outline: none;
+  border: none;
+}
+
+@mixin transactionStatus($bg, $color) {
+  background-color: $bg;
+  color: $color;
+  font-weight: 600;
+  padding: 0.313rem;
+  border-radius: 0.313rem;
+}
+
+@mixin Shadow {
+  -webkit-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+  padding: 0.625rem;
+}
+
+@mixin headingOne {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+@mixin flexPreset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin paddingAndBorder {
+  padding: 0.313rem;
+  border-radius: 0.313rem;
+}
+
+@mixin buttonStyleOne {
+  @include paddingAndBorder();
+  margin-left: 0.313rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+@mixin buttonSend {
+  color: $sendText;
+  background-color: $sendBg;
+}
+@mixin buttonRequest {
+  color: $requestText;
+  background-color: $requestBg;
+}
+@mixin Status {
+  @include paddingAndBorder();
+  font-weight: 500;
+}
+
+// image style in user list
+@mixin userImage {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+  object-fit: cover;
+}
+
+// form styling
+
+@mixin labelStyle {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: $labelColor;
+}
+
+@mixin formInputStyle($width) {
+  padding: 0.625rem;
+  border-radius: 0.313rem;
+  width: $width;
+  border: 1px solid #e5e5e5;
+  outline: none;
+  font-weight: 600;
+}
+@mixin placeHolder {
+  color: #e5e5e5;
+  font-weight: 400;
+}
+@mixin formControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+// table styling
+@mixin cellWrapper {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+@mixin tableHead {
+  font-weight: 600;
+  color: $tableHeadColor;
+}
+
+@mixin dateAndTime() {
+  .date {
+    font-weight: 600;
+  }
+  .time {
+    color: $timeColor;
+    padding-top: 0.313rem;
+  }
+}

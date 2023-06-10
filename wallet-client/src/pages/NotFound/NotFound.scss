@@ -1,3 +1,6 @@
+
+@import '../../Helper/helper.scss';
+
 .notFound {
   height: 100vh;
   display: flex;
@@ -5,13 +8,13 @@
   justify-content: center;
   flex-direction: column;
   font-size: 3rem;
-  color: #7451f8;
+  color: $primaryColor;
   .notFoundLink {
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
     p {
-      color: #7451f8;
+      color: $primaryColor;
       margin-top: 1rem;
       text-decoration: underline;
     }
