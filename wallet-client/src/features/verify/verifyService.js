@@ -1,7 +1,6 @@
 import axios from 'axios'
-// const API_URL = `${import.meta.env.VITE_URL}/api/`
-const API_URL = 'http://localhost:8080/api/'
-
+const API_URL = `${import.meta.env.VITE_URL}/api/`
+// const API_URL = 'http://localhost:8080/api/'
 
 const verifyUser = async (data, token) => {
   const config = {
