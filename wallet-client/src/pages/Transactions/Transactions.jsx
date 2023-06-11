@@ -29,6 +29,7 @@ const Transactions = () => {
               <TabContext value={value}>
                 <Box sx={{ borderColor: 'divider' }}>
                   <TabList
+                  className='tabList'
                     onChange={handleChange}
                     aria-label='send/receive tabs'>
                     <Tab label='Send' className='singleTab' value='1' />

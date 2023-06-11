@@ -12,12 +12,6 @@
       }
       .transactionsList {
         @include Shadow();
-        // .tabList {
-        //   color: $primaryColor;
-        //   .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-        //     color: $primaryColor;
-        //   }
-        // }
         .table {
           .tableCell {
             .deposit {
@@ -36,23 +30,15 @@
           .tableHead {
             @include tableHead();
           }
-          // .date {
-          //   font-weight: 600;
-          // }
-          // .time {
-          //   color: #aab0b7;
-          //   padding-top: 0.313rem;
-          // }
           @include dateAndTime();
           .cellWrapper {
             @include cellWrapper();
           }
         }
-
         .singleTab.Mui-selected {
           color: $primaryColor;
         }
-        .css-1aquho2-MuiTabs-indicator {
+        .MuiTabs-indicator {
           background-color: $primaryColor;
         }
       }
