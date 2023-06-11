@@ -30,8 +30,8 @@ const Request = () => {
                   <TabList
                     onChange={handleChange}
                     aria-label='send/receive tabs'>
-                    <Tab label='Send' value='1' className='send' />
-                    <Tab label='Received' value='2' className='send' />
+                    <Tab label='Send' value='1' className='singleTab' />
+                    <Tab label='Received' value='2' className='singleTab' />
                   </TabList>
                 </Box>
                 <TabPanel value='1'>

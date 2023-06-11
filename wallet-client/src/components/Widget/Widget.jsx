@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AddMoneyModal from './AddMoneyModal'
 import { USDollar } from '../../pages/utils/helpOptions'
+import Loader from '../Loader/Loader'
 
 const Widget = ({ type }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -18,7 +19,7 @@ const Widget = ({ type }) => {
   const { balance, moneySend, moneyReceived, requestReceived } = useSelector(
     (state) => state.auth.user
   )
- 
+
   let data
 
   const diff = 20

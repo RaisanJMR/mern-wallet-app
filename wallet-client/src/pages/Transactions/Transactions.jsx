@@ -31,8 +31,8 @@ const Transactions = () => {
                   <TabList
                     onChange={handleChange}
                     aria-label='send/receive tabs'>
-                    <Tab label='Send' value='1'/>
-                    <Tab label='Received' value='2'/>
+                    <Tab label='Send' className='singleTab' value='1' />
+                    <Tab label='Received' className='singleTab' value='2' />
                   </TabList>
                 </Box>
                 <TabPanel value='1'>

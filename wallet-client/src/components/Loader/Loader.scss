@@ -2,7 +2,7 @@
 
 .circularProgressContainer {
   @include flexPreset();
-  .css-18lrjg1-MuiCircularProgress-root {
+  .progressLoader {
     color: $primaryColor;
   }
 }

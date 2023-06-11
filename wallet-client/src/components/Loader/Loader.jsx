@@ -5,7 +5,7 @@ import { CircularProgress } from '@mui/material'
 const Loader = () => {
   return (
     <div className='circularProgressContainer'>
-      <CircularProgress />
+      <CircularProgress className='progressLoader' />
     </div>
   )
 }
