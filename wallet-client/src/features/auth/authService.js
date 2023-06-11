@@ -1,7 +1,5 @@
 import axios from 'axios'
-
-const API_URL = 'http://localhost:8080/api/users/'
-
+const API_URL = `${import.meta.env.VITE_URL}/api/users/`
 
 const login = async (userData) => {
   const response = await axios.post(API_URL + 'login', userData)
@@ -11,7 +9,6 @@ const login = async (userData) => {
   }
   return response.data
 }
-
 
 const register = async (userData) => {
   const response = await axios.post(API_URL + 'register', userData)
@@ -27,7 +24,7 @@ const getAllUsers = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   }
-  const response = await axios.get(API_URL + 'get_users',config)
+  const response = await axios.get(API_URL + 'get_users', config)
   return response.data
 }
 

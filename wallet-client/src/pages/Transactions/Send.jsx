@@ -13,6 +13,7 @@ import {
 } from '../../features/transactions/transactionSlice'
 import './Transactions.scss'
 import Loader from '../../components/Loader/Loader'
+import { optionsDate, optionsTime, USDollar } from '../utils/helpOptions'
 
 const Send = () => {
   const dispatch = useDispatch()
@@ -31,15 +32,6 @@ const Send = () => {
 
   if (isLoading) {
     return <Loader />
-  }
-
-  const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
-
-  const optionsTime = {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: true,
   }
 
   return (
@@ -108,7 +100,7 @@ const Send = () => {
               </TableCell>
 
               <TableCell className='tableCell'>
-                $ {transaction.amount}
+                {USDollar.format(transaction.amount)}
               </TableCell>
               <TableCell className='tableCell'>
                 {transaction.reference}

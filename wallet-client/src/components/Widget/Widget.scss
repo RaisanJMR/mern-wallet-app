@@ -1,10 +1,10 @@
+@import '../../Helper/helper.scss';
+
 .widget {
   display: flex;
   justify-content: space-between;
   flex: 1;
-  padding: 0.625rem;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.3);
+  @include Shadow();
   height: 8.25rem;
   .left,
   .right {
@@ -14,7 +14,7 @@
     .title {
       font-weight: 700;
       font-size: 0.875rem;
-      color: rgb(160, 160, 160);
+      color: $widgetTitleColor;
     }
     .counter {
       font-size: 1.75rem;
@@ -22,7 +22,7 @@
     }
     .link {
       font-size: 0.8rem;
-      color: #7551f8b0;
+      color: $primaryColor;
       font-weight: 500;
       text-decoration: none;
       width: fit-content;
@@ -42,10 +42,9 @@
       }
     }
     .icon {
-        font-size: 1.7rem;
-        align-self: flex-end;
-        padding: 0.313rem;
-        border-radius: 0.313rem;
+      font-size: 1.7rem;
+      align-self: flex-end;
+      @include paddingAndBorder();
     }
   }
 }

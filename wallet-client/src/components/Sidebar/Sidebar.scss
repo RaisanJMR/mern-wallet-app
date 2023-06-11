@@ -20,14 +20,13 @@
   }
 
   .center {
-    padding: 0 0.6rem 0;
     ul {
       list-style-type: none;
       .title {
         font-size: 0.625rem;
         font-weight: 700;
         color: #999999;
-        margin: 1rem 0 1rem 0;
+        margin: 1rem 0 1rem 0.3rem;
       }
       li {
         display: flex;
@@ -35,7 +34,7 @@
         padding: 0.3rem;
         cursor: pointer;
         &:hover {
-          background-color: #ece8ff;
+          background-color: rgb(236, 232, 255);
         }
         .icon {
           font-size: 1.1rem;

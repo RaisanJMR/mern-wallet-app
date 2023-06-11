@@ -1,3 +1,4 @@
+@import '../../Helper/helper.scss';
 .navbar {
   height: 4rem;
   border-bottom: 0.5px solid rgb(231, 228, 228);
@@ -51,25 +52,7 @@
         font-size: 1.25rem;
       }
       .avatar {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      .counter {
-        width: 0.938rem;
-        height: 0.938rem;
-        background-color: red;
-        border-radius: 50%;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.625rem;
-        font-weight: bold;
-        position: absolute;
-        top: -0.188rem;
-        right: -0.313rem;
+        @include userImage();
       }
     }
   }

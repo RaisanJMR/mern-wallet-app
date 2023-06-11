@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { reset, requestSend } from '../../features/request/requestSlice'
 import Loader from '../../components/Loader/Loader'
+import { optionsDate, optionsTime, USDollar } from '../utils/helpOptions'
 
 const RequestSend = () => {
   const dispatch = useDispatch()
@@ -27,13 +28,7 @@ const RequestSend = () => {
   if (isLoading) {
     return <Loader />
   }
-  const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
-  const optionsTime = {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: true,
-  }
+
   return (
     <TableContainer component={Paper} className='table'>
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
@@ -81,7 +76,7 @@ const RequestSend = () => {
                 </span>
               </TableCell>
               <TableCell className='tableCell'>
-                $ {transaction.amount}
+                {USDollar.format(transaction.amount)}
               </TableCell>
               <TableCell className='tableCell date'>
                 {transaction.status === 'accepted' ? (

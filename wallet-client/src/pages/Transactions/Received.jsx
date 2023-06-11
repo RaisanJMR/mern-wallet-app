@@ -13,6 +13,7 @@ import {
   getReceivedTransactions,
 } from '../../features/transactions/transactionSlice'
 import Loader from '../../components/Loader/Loader'
+import { optionsDate, optionsTime, USDollar } from '../utils/helpOptions'
 
 const Received = () => {
   const dispatch = useDispatch()
@@ -26,14 +27,6 @@ const Received = () => {
   useEffect(() => {
     dispatch(getReceivedTransactions())
   }, [dispatch])
-
-  const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
-  const optionsTime = {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: true,
-  }
 
   if (isLoading) {
     return <Loader />
@@ -105,7 +98,7 @@ const Received = () => {
               </TableCell>
 
               <TableCell className='tableCell'>
-                $ {transaction.amount}
+                {USDollar.format(transaction.amount)}
               </TableCell>
               <TableCell className='tableCell'>
                 {transaction.reference}

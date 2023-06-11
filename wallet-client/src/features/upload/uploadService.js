@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = 'http://localhost:8080/api/'
+const API_URL = `${import.meta.env.VITE_URL}/api/`
 
 const uploadImage = async (data) => {
   const response = await axios.post(API_URL + `upload/${data.id}`, {

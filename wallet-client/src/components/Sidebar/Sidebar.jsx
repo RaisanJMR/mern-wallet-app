@@ -25,7 +25,7 @@ const Sidebar = () => {
       <div className='top'>
         <div className='top'>
           <Link to='/' style={{ textDecoration: 'none', color: '#222222' }}>
-            <span className='logo'>wallet</span>
+            <span className='logo'>EasyPay</span>
           </Link>
         </div>
       </div>
