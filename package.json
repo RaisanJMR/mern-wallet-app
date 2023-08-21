@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon wallet-app-backend/index.js",
-    "client": "npm run dev --prefix wallet-client",
+    "server": "nodemon backend/index.js",
+    "client": "npm run dev --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],

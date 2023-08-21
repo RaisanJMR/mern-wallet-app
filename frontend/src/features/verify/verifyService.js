@@ -1,7 +1,8 @@
 import axios from 'axios'
-const API_URL = `${import.meta.env.VITE_URL}/api/`
+import { API_URL } from '../constants'
+// const API_URL = `${import.meta.env.VITE_URL}/api/`
 // const API_URL = 'http://localhost:8080/api/'
-
+console.log('FROM VERIFY', API_URL)
 const verifyUser = async (data, token) => {
   const config = {
     headers: {
@@ -9,7 +10,7 @@ const verifyUser = async (data, token) => {
     },
   }
   const response = await axios.put(
-    API_URL + `users/verify/${data._id}`,
+    API_URL + `/api/users/verify/${data._id}`,
     { isVerified: data.isVerified },
     config
   )

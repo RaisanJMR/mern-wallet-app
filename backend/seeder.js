@@ -4,12 +4,14 @@ const fs = require('fs')
 const path = require('path')
 const colors = require('colors')
 // const User = require('./models/userModal')
-// const User = require('./models/userModal')
+const User = require('./models/userModal')
 const Request = require('./models/requestModal')
 const Transaction = require('./models/transactionModal')
+
 const connectDB = require('./config/db')
 
 connectDB()
+
 // READ JSON FILES
 
 const users = JSON.parse(
